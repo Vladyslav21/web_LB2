@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <title>Лабораторна робота №2</title>
+    </head>
+<body>
+	<form>
+		<p>Перший робітник</p>
+		<input type="text"  placeholder="Прізвище">
+		<input type="date" id="firstHireDate" placeholder="Дата прийому на роботу">
+        
+
+		<p>Другий робітник</p>
+		<input type="text"  placeholder="Прізвище">
+		<input type="date" id="secondHireDate" placeholder="Дата прийому на роботу">
+        
+
+		<p>Третій робітник</p>
+		<input type="text"  placeholder="Прізвище">
+		<input type="date" id="thirdHireDate" placeholder="Дата прийому на роботу">
+        
+        
+
+		<p>Четвертий робітник</p>
+		<input type="text"  placeholder="Прізвище">
+		<input type="date" id="fourthHireDate" placeholder="Дата прийому на роботу">
+        
+        
+
+		<p>П'ятий робітник</p>
+		<input type="text"  placeholder="Прізвище">
+		<input type="date" id="fifthHireDate" placeholder="Дата прийому на роботу">
+        <br>
+        <br>
+        
+
+		<button type="button" onclick="averageYears()">Розрахувати середній стаж роботи</button>
+	</form>
+
+	<br>
+    <br>
+	<b id="result"></b>
+
+	
+	<script>
+		function averageYears() {
+			// Отримання значень
+			var hireDates = [
+				new Date(document.getElementById("firstHireDate").value),
+				new Date(document.getElementById("secondHireDate").value),
+				new Date(document.getElementById("thirdHireDate").value),
+				new Date(document.getElementById("fourthHireDate").value),
+				new Date(document.getElementById("fifthHireDate").value)
+			];
+
+			//Середній стаж
+			var today = new Date();
+			var totalYears = 0;
+			for (var i = 0; i < hireDates.length; i++){
+				var years = today.getFullYear() - hireDates[i].getFullYear();
+
+				    if (today.getMonth() < hireDates[i].getMonth() || (today.getMonth() == hireDates[i].getMonth() && today.getDate() < hireDates[i].getDate())) 
+                    {
+                        years--;
+                    }
+
+                totalYears += years;
+            }
+var average = Math.round(totalYears / hireDates.length);
+document.getElementById("result").innerHTML = "Середній стаж роботи: " + average + " років";
+	}
+</script>
+</body>
+</html>
